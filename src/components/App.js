@@ -5,7 +5,8 @@ import Header from'./Header.js';
 import StreamDelete from './stream/streamDelete';
 import StreamEdit from './stream/streamEdit';
 import StreamNew from './stream/streamNew';
-import StreamShow from './stream/streamShow';
+import StreamShow from './stream/streamList';
+import streamList from './stream/streamList';
 
 const App =()=>{
 
@@ -14,7 +15,7 @@ const App =()=>{
         <BrowserRouter>
        <div>
        <Header/>
-       <Route path = "/" exact component = {StreamNew}/>
+       <Route path = "/" exact component = {streamList}/>
         <Route path = "/streams/New" component = {StreamNew}/>
         <Route path = "/streams/edit" component = {StreamEdit}/>
         <Route path = "/streams/Show"  component = {StreamShow}/>

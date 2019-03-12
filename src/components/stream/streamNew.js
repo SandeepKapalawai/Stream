@@ -14,32 +14,30 @@ class StreamNew extends React.Component{
             </div>
            )
         }
-        
     }
 
     renderInput=({input, label,meta})=>
-   
     {
         const className =`field ${meta.error && meta.touched ? "error" : ""}`
         return (
             <div className={className}>
             <label>{label}</label>
             <input {...input} />
-            <div>{meta.errors}</div>
+            <div>{this.renderError(meta)}</div>
             </div>
         )
        
     }
-
     onSubmit=(formValues)=>{
       console.log(formValues)
-      this.props.StreamNew(formValues)
+      this.props.createStream(formValues);
     }
     render(){
         return(
             <form className="ui form error" onSubmit={this.props.handleSubmit(this.onSubmit)}>
                 <Field name="title" component={this.renderInput} label="Enter title"/>
                 <Field name="description" component={this.renderInput} label="Enter Description"/>
+                <button className="ui button primary">Submit</button>
             </form>
         )
     }
@@ -49,19 +47,15 @@ class StreamNew extends React.Component{
 const validate = (formValues) =>{
     const errors={};
     if(!formValues.title){
-
         errors.title="You muster"
     }
-
     if(!formValues.description){
-
         errors.description="You muster"
     }
-
     return errors;
 }
 const formWrapped = reduxForm({form: "streamCreate",
 validate})(StreamNew);
 
 
-export default connect (null, {StreamNew}) (formWrapped);
+export default connect (null, {createStream}) (formWrapped);
